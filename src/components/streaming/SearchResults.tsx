@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Content } from '@/lib/streaming-data';
-import { Film, Tv, Play, Star } from 'lucide-react';
+import { Film, Tv, Play, Tag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SearchResultsProps {
@@ -78,9 +78,9 @@ function SearchResultItem({ item, onClose, onContentClick, index }: { item: Cont
         </div>
         <p className="text-white/40 text-xs mt-1 line-clamp-1">{item.description}</p>
       </div>
-      <div className="flex items-center gap-1 bg-yellow-500/20 px-2 py-1 rounded">
-        <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-        <span className="text-yellow-400 text-xs font-medium">{item.rating}</span>
+      <div className="flex items-center gap-1 bg-blue-600/30 px-2 py-1 rounded border border-blue-500/30">
+        <Tag className="w-3 h-3 text-blue-400 fill-blue-400/20" />
+        <span className="text-blue-400 text-xs font-bold">{item.price}</span>
       </div>
     </button>
   );

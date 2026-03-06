@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { ArrowLeft, Play, Star, Clock, Calendar, Heart, Plus, Share2, ChevronDown, Download } from 'lucide-react';
+import { ArrowLeft, Play, Tag, Clock, Calendar, Heart, Plus, Share2, ChevronDown, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Content, Episode } from '@/lib/streaming-data';
@@ -50,9 +50,8 @@ export default function ContentPage({
         // Bonus for same type
         if (c.type === content.type) score += 2;
         
-        // Bonus for similar rating
-        const ratingDiff = Math.abs(parseFloat(c.rating) - parseFloat(content.rating));
-        if (ratingDiff < 1) score += 1;
+        // Bonus for similar price
+        if (c.price === content.price) score += 2;
         
         return { content: c, score };
       })
@@ -196,9 +195,9 @@ export default function ContentPage({
             
             {/* Meta info */}
             <div className="flex items-center gap-3 md:gap-4 flex-wrap mb-6">
-              <div className="flex items-center gap-1.5 bg-yellow-500/20 rounded-lg px-3 py-1">
-                <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-yellow-400 font-bold text-lg">{content.rating}</span>
+              <div className="flex items-center gap-1.5 bg-blue-600/30 rounded-lg px-3 py-1 border border-blue-500/30">
+                <Tag className="w-5 h-5 text-blue-400 fill-blue-400/20" />
+                <span className="text-blue-400 font-bold text-lg">{content.price}</span>
               </div>
               <span className="text-blue-300 text-sm md:text-base flex items-center">
                 <Calendar className="w-4 h-4 mr-1" />
@@ -365,8 +364,8 @@ export default function ContentPage({
                 <p className="text-white font-semibold text-lg">{content.duration}</p>
               </div>
               <div className="bg-blue-900/20 rounded-xl p-5 border border-blue-800/30">
-                <p className="text-blue-400/60 text-sm mb-2">Rating</p>
-                <p className="text-white font-semibold text-lg">{content.rating}/10</p>
+                <p className="text-blue-400/60 text-sm mb-2">Access Fee</p>
+                <p className="text-white font-semibold text-lg">{content.price}</p>
               </div>
               <div className="bg-blue-900/20 rounded-xl p-5 border border-blue-800/30">
                 <p className="text-blue-400/60 text-sm mb-2">Quality</p>
@@ -496,10 +495,10 @@ function SimilarContentCard({ content, onClick }: { content: Content; onClick: (
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
         
-        {/* Rating */}
-        <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 backdrop-blur rounded-md px-1.5 py-0.5">
-          <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-          <span className="text-white text-xs font-medium">{content.rating}</span>
+        {/* Price */}
+        <div className="absolute top-2 left-2 flex items-center gap-1 bg-blue-600/80 backdrop-blur rounded-md px-1.5 py-0.5">
+          <Tag className="w-3 h-3 text-white fill-white/20" />
+          <span className="text-white text-xs font-bold">{content.price}</span>
         </div>
 
         {/* Year badge */}
