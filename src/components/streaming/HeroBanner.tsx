@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Play, Info, Star } from 'lucide-react';
+import { Play, Info, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Content } from '@/lib/streaming-data';
@@ -42,9 +42,9 @@ export default function HeroBanner({ content, onWatchTrailer, onAccessNow }: Her
 
         {/* Meta info */}
         <div className="flex items-center gap-2 md:gap-4 mb-3 md:mb-4 flex-wrap">
-          <div className="flex items-center gap-1 bg-yellow-500/20 rounded-md px-2 py-0.5">
-            <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-            <span className="text-yellow-400 font-bold text-sm">{content.rating}</span>
+          <div className="flex items-center gap-1 bg-blue-600/30 rounded-md px-2 py-0.5 border border-blue-500/30">
+            <Tag className="w-4 h-4 text-blue-400 fill-blue-400/20" />
+            <span className="text-blue-400 font-bold text-sm">{content.price}</span>
           </div>
           <span className="text-blue-300 text-sm">{content.year}</span>
           <span className="text-blue-300 text-sm hidden sm:inline">{content.duration}</span>

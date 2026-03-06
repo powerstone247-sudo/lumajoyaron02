@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, Play, Star, Clock, Calendar, Heart, Plus, ChevronDown } from 'lucide-react';
+import { X, Play, Tag, Clock, Calendar, Heart, Plus, ChevronDown } from 'lucide-react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -70,9 +70,9 @@ export default function ContentDetailModal({ content, isOpen, onClose, onWatchTr
               
               {/* Meta info */}
               <div className="flex items-center gap-3 flex-wrap mb-4">
-                <div className="flex items-center gap-1 bg-yellow-500/20 rounded-md px-2 py-0.5">
-                  <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                  <span className="text-yellow-400 font-bold text-sm">{content.rating}</span>
+                <div className="flex items-center gap-1 bg-blue-600/30 rounded-md px-2 py-0.5 border border-blue-500/30">
+                  <Tag className="w-4 h-4 text-blue-400 fill-blue-400/20" />
+                  <span className="text-blue-400 font-bold text-sm">{content.price}</span>
                 </div>
                 <span className="text-blue-300 text-sm flex items-center">
                   <Calendar className="w-4 h-4 mr-1" />
@@ -206,8 +206,8 @@ export default function ContentDetailModal({ content, isOpen, onClose, onWatchTr
                   <p className="text-white font-medium">{content.duration}</p>
                 </div>
                 <div className="bg-blue-900/20 rounded-lg p-3">
-                  <p className="text-blue-400/60 text-xs mb-1">Rating</p>
-                  <p className="text-white font-medium">{content.rating}/10</p>
+                  <p className="text-blue-400/60 text-xs mb-1">Access Fee</p>
+                  <p className="text-white font-medium">{content.price}</p>
                 </div>
                 <div className="bg-blue-900/20 rounded-lg p-3">
                   <p className="text-blue-400/60 text-xs mb-1">Quality</p>

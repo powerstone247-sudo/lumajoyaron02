@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { ArrowLeft, Star, Play, Filter, Grid, List } from 'lucide-react';
+import { ArrowLeft, Tag, Play, Filter, Grid, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Content, tvSeries, featuredFilms } from '@/lib/streaming-data';
@@ -14,7 +14,7 @@ interface CategoryPageProps {
 }
 
 export default function CategoryPage({ type, onBack, onContentClick }: CategoryPageProps) {
-  const [sortBy, setSortBy] = useState<'rating' | 'year' | 'title'>('rating');
+  const [sortBy, setSortBy] = useState<'price' | 'year' | 'title'>('price');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const content = type === 'series' ? tvSeries : featuredFilms;
@@ -23,8 +23,8 @@ export default function CategoryPage({ type, onBack, onContentClick }: CategoryP
 
   const sortedContent = useMemo(() => {
     const sorted = [...content];
-    if (sortBy === 'rating') {
-      sorted.sort((a, b) => b.rating - a.rating);
+    if (sortBy === 'price') {
+      sorted.sort((a, b) => (b.price || '').localeCompare(a.price || ''));
     } else if (sortBy === 'year') {
       sorted.sort((a, b) => b.year - a.year);
     } else {
@@ -89,10 +89,10 @@ export default function CategoryPage({ type, onBack, onContentClick }: CategoryP
                 <Filter className="h-4 w-4 text-blue-400 ml-2" />
                 <select
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as 'rating' | 'year' | 'title')}
+                  onChange={(e) => setSortBy(e.target.value as 'price' | 'year' | 'title')}
                   className="bg-transparent text-blue-300 text-sm border-none outline-none cursor-pointer py-1 pr-2"
                 >
-                  <option value="rating" className="bg-[#0a1628]">Top Rated</option>
+                  <option value="price" className="bg-[#0a1628]">By Price</option>
                   <option value="year" className="bg-[#0a1628]">Newest</option>
                   <option value="title" className="bg-[#0a1628]">A-Z</option>
                 </select>
@@ -149,10 +149,10 @@ function CategoryCard({ content, onClick }: { content: Content; onClick: () => v
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
-        {/* Rating */}
-        <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 backdrop-blur rounded-md px-1.5 py-0.5">
-          <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-          <span className="text-white text-xs font-medium">{content.rating}</span>
+        {/* Price */}
+        <div className="absolute top-2 left-2 flex items-center gap-1 bg-blue-600/80 backdrop-blur rounded-md px-1.5 py-0.5">
+          <Tag className="w-3 h-3 text-white fill-white/20" />
+          <span className="text-white text-xs font-bold">{content.price}</span>
         </div>
 
         {/* Year badge */}
@@ -230,8 +230,8 @@ function CategoryListItem({ content, onClick }: { content: Content; onClick: () 
 
         <div className="flex items-center gap-3 mb-2 text-sm">
           <div className="flex items-center gap-1">
-            <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-            <span className="text-white">{content.rating}</span>
+            <Tag className="w-4 h-4 text-blue-400 fill-blue-400/20" />
+            <span className="text-white font-bold">{content.price}</span>
           </div>
           <span className="text-blue-400/60">{content.year}</span>
           {content.type === 'series' && content.seasons && (

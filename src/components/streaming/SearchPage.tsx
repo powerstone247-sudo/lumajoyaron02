@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, Search, X, Star, Play } from 'lucide-react';
+import { ArrowLeft, Search, X, Tag, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -248,10 +248,10 @@ function SearchResultCard({ content, onClick }: { content: Content; onClick: () 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
         
-        {/* Rating */}
-        <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 backdrop-blur rounded-md px-1.5 py-0.5">
-          <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-          <span className="text-white text-xs font-medium">{content.rating}</span>
+        {/* Price */}
+        <div className="absolute top-2 left-2 flex items-center gap-1 bg-blue-600/80 backdrop-blur rounded-md px-1.5 py-0.5">
+          <Tag className="w-3 h-3 text-white fill-white/20" />
+          <span className="text-white text-xs font-bold">{content.price}</span>
         </div>
 
         {/* Year badge */}
